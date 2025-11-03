@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">淘宝助手</string>
+    <string name="accessibility_service_description">用于执行自动化点击脚本</string>
+</resources>
