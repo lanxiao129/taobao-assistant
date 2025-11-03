@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>淘宝设置界面模拟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            height: 48px;
+            background-color: #fff;
+            padding: 0 14px 0 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-arrow {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 22px;
+            margin-right: 12px;
+        }
+        .menu {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 22px;
+            margin-left: auto;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .user-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+        }
+        .user-content {
+            display: flex;
+            align-items: center;
+        }
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 12px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#ddd"/><circle cx="40" cy="40" r="4.2" fill="#333"/><circle cx="60" cy="40" r="4.2" fill="#333"/><path d="M40 55 L60 55" stroke="#333" stroke-width="1.6"/></svg>');
+            background-size: cover;
+        }
+        .user-info .username {
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+        .user-info .account {
+            font-size: 15px;
+            color: #999;
+        }
+        .setting-list {
+            background-color: #fff;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+            padding: 0 16px;
+            border-bottom: 1px solid #eee;
+        }
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        .item-label {
+            font-size: 15px;
+        }
+        .item-desc {
+            font-size: 13px;
+            color: #999;
+        }
+        .arrow {
+            width: 8.5px;
+            height: 8.5px;
+            border-right: 1.4px solid #999;
+            border-bottom: 1.4px solid #999;
+            transform: rotate(-45deg);
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 12px;
+            background-color: #fff;
+        }
+        .action-btn {
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .action-btn:last-child {
+            border-bottom: none;
+        }
+        .links {
+            text-align: center;
+            padding: 12px 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .links a {
+            color: #1677ff;
+            text-decoration: none;
+        }
+        .record-btn {
+            background-color: #ff5000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="back-arrow"><</div>
+        <div class="title">设置</div>
+        <div class="menu">...</div>
+    </div>
+    <div class="user-section">
+        <div class="user-content">
+            <div class="avatar"></div>
+            <div class="user-info">
+                <div class="username">tbNick_0ijdtww</div>
+                <div class="account">账号名:tb545530741</div>
+            </div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="setting-list">
+        <div class="setting-item">
+            <div class="item-label">我的收货地址</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="setting-item">
+            <div class="item-label">我的档案</div>
+            <div class="item-desc">添加档案，获得精准推荐</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="setting-item">
+            <div class="item-label">账号与安全</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="setting-item">
+            <div class="item-label">点击脚本录制</div>
+            <div class="item-desc">录制自动化点击脚本</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="action-buttons">
+        <div class="action-btn record-btn" onclick="startRecording()">录制点击脚本</div>
+        <div class="action-btn">切换账号</div>
+        <div class="action-btn">退出登录</div>
+    </div>
+    <div class="links">
+        <a href="#">《个人信息共享清单》</a>
+        <a href="#">《个人信息收集清单》</a>
+        <a href="#">《证照信息》</a>
+    </div>
+
+    <script>
+        function startRecording() {
+            if (window.Android && typeof window.Android.startRecording === 'function') {
+                window.Android.startRecording();
+            } else {
+                alert("录制功能需要在App中使用");
+            }
+        }
+
+        // 为设置项添加点击事件
+        document.querySelectorAll('.setting-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const label = this.querySelector('.item-label').textContent;
+                if (label === '点击脚本录制') {
+                    startRecording();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
